@@ -1,181 +1,117 @@
-# SpringBoot 项目初始模板
 
-> 作者：[蔚蓝](https://github.com/Azure12355)
-> 仅分享于 [仅供学习交流使用](https://github.com/Azure12355)
+<p align="center">
+    <a href="" target="_blank">
+      <img src="./doc/icon.png" width="150" />
+    </a>
+</p>
 
-基于 Java SpringBoot 的项目初始模板，整合了常用框架和主流业务的示例代码。
+<h1 align="center">DeepForest</h1>
+<p align="center">
+  <strong>基于DeepSeek微调模型 + RAG + Neo4j知识图谱 + 数据爬虫的林业病虫害智能问答系统。
+    <br>致力于打造企业级AI应用开发的最佳实践，包含分布式爬虫、数据清洗、图数据库建模与RAG实践。
+    <br><em>持续更新 ing～</em>
+  </strong>
+</p>
 
-只需 1 分钟即可完成内容网站的后端！！！大家还可以在此基础上快速开发自己的项目。
+<div align="center">
+    <a href="https://www.weilanx.com"><img src="https://img.shields.io/badge/个人网站-蔚蓝-blue.svg?style=plasticr"></a>
+    <a href="https://github.com/Azure12355/deep-forest"><img src="https://img.shields.io/badge/github-项目地址-yellow.svg?style=plasticr"></a>
+    <a href="https://gitee.com/Azure12355/deep-forest"><img src="https://img.shields.io/badge/码云-项目地址-orange.svg?style=plasticr"></a>
+    <a href="https://github.com/Azure12355/deep-forest-frontend"><img src="https://img.shields.io/badge/前端-项目地址-blueviolet.svg?style=plasticr"></a>
+    <a href="https://github.com/Azure12355/deep-forest/commits" target="_blank"><br>
+    <a href="https://github.com/Azure12355/deep-forestWeb/actions/workflows/deploy.yml" target="_blank"></a>
+    <a href="https://github.com/Azure12355/deep-forest/commits" target="_blank">
+        <img alt="Commit" src="https://img.shields.io/github/commit-activity/m/Azure12355/deep-forest"></a>
+    <a href="https://github.com/Azure12355/deep-forest/issues" target="_blank">
+        <img alt="Issues" src="https://img.shields.io/github/issues/Azure12355/deep-forest">
+    </a> 
+    <a href="https://github.com/Azure12355/deep-forest/blob/master/LICENSE" target="_blank">
+        <img alt="License: Apache-2.0" src="https://img.shields.io/badge/License-Apache--2.0-blue.svg">
+    </a> 
+    <a href="https://github.com/Azure12355/deep-forest/stargazers" target="_blank">
+        <img alt="License" src="https://img.shields.io/github/stars/Azure12355/deep-forest.svg?style=social">
+    </a> 
+</div>
 
-[toc]
+## 项目导航
 
-## 模板特点
+- **快速体验地址**：[deep-forest首页](https://azure12355.github.io/deep-forest-frontend/)
+- **前端项目仓库**：[deep-forestWeb](https://github.com/Azure12355/deep-forest-frontend)
+- **码云仓库**：[Gitee](https://gitee.com/Azure12355/deep-forest)（国内访问速度更快）
 
-### 主流框架 & 特性
+## 项目介绍
 
-- Spring Boot 2.7.x（贼新）
-- Spring MVC
-- MyBatis + MyBatis Plus 数据访问（开启分页）
-- Spring Boot 调试工具和项目处理器
-- Spring AOP 切面编程
-- Spring Scheduler 定时任务
-- Spring 事务注解
+deep-forest是一个林业病虫害智能问答系统，基于DeepSeek微调模型，结合RAG（检索增强生成）和Neo4j知识图谱技术，通过分布式数据爬虫获取林业相关数据。项目采用SpringBoot作为后端Web框架，前端使用React搭配AntDesign全家桶，构建清晰、美观、用户友好的UI界面。涵盖高性能分布式爬虫设计、数据清洗、数据库建模、图数据库实体建模、模型微调流程和RAG实践等技术，完全遵循企业级开发规范，持续更新中。
 
-### 数据存储
+![p92nKne.png](./doc/项目架构图.png)
 
-- MySQL 数据库
-- Redis 内存数据库
-- Elasticsearch 搜索引擎
-- 腾讯云 COS 对象存储
+![p92nKne.png](./doc/系统拓扑图.png)
 
-### 工具类
+### 项目演示
 
-- Easy Excel 表格处理
-- Hutool 工具库
-- Apache Commons Lang3 工具类
-- Lombok 注解
+#### C端项目
 
-### 业务特性
+- 前端源码地址：[https://github.com/Azure12355/deep-forest-frontend](https://github.com/Azure12355/deep-forest-frontend)
+- 项目演示地址：[https://azure12355.github.io/deep-forest-frontend/](https://azure12355.github.io/deep-forest-frontend/)
 
-- 业务代码生成器（支持自动生成 Service、Controller、数据模型代码）
-- Spring Session Redis 分布式登录
-- 全局请求响应拦截器（记录日志）
-- 全局异常处理器
-- 自定义错误码
-- 封装通用响应类
-- Swagger + Knife4j 接口文档
-- 自定义权限注解 + 全局校验
-- 全局跨域处理
-- 长整数丢失精度解决
-- 多环境配置
+![p92nKne.png](./doc/智能问答界面.png)
 
+![p92nKne.png](./doc/知识图谱界面.png)
 
-## 业务功能
+### 技术选型
 
-- 提供示例 SQL（用户、帖子、帖子点赞、帖子收藏表）
-- 用户登录、注册、注销、更新、检索、权限管理
-- 帖子创建、删除、编辑、更新、数据库检索、ES 灵活检索
-- 帖子点赞、取消点赞
-- 帖子收藏、取消收藏、检索已收藏帖子
-- 帖子全量同步 ES、增量同步 ES 定时任务
-- 支持微信开放平台登录
-- 支持微信公众号订阅、收发消息、设置菜单
-- 支持分业务的文件上传
+#### 后端技术
 
-### 单元测试
+|         技术          | 说明        | 官网                                                                                     |
+|:-------------------:|-----------|----------------------------------------------------------------------------------------|
+|     SpringBoot      | 后端Web开发框架 | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)       |
+|        Neo4j        | 知识图谱数据库   | [https://neo4j.com](https://neo4j.com)                                                 |
+|      DeepSeek       | 微调模型      | [https://deepseek.ai](https://deepseek.ai)                                             |
+|        Redis        | 缓存加速与分布式锁 | [https://redis.io](https://redis.io)                                                   |
+|       Docker        | 容器化部署     | [https://www.docker.com](https://www.docker.com)                                       |
+|       Scrapy        | 分布式爬虫框架   | [https://scrapy.org](https://scrapy.org)                                               |
+|       Lombok        | 简化Java代码  | [https://projectlombok.org](https://projectlombok.org)                                 |
+|     Swagger-UI      | API文档生成工具 | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui) |
+| Hibernate-validator | 接口参数校验    | [http://hibernate.org/validator/](http://hibernate.org/validator/)                     |
 
-- JUnit5 单元测试
-- 示例单元测试类
+#### 前端技术
 
-### 架构设计
+|    技术     | 说明     | 官网                                         |
+|:---------:|--------|--------------------------------------------|
+|   React   | 前端开发框架 | [https://reactjs.org](https://reactjs.org) |
+| AntDesign | UI组件库  | [https://ant.design](https://ant.design)   |
 
-- 合理分层
+前往[deep-forest-frontend](https://github.com/Azure12355/deep-forest-frontend)查看更多前端技术细节。
 
+### 环境搭建
 
-## 快速上手
+在项目目录下的`application.yml`修改启动环境`spring.profiles.active` = `test`，然后在`application-test.properties`
+中配置相关环境参数（如Neo4j、Redis连接信息）。详细步骤见[项目文档](https://www.yuque.com/Azure12355/deep-forest)。
 
-> 所有需要修改的地方都标记了 `todo`，便于大家找到修改的位置~
+### 项目文档
 
-### MySQL 数据库
+提供保姆级教学路线，涵盖环境搭建、分布式爬虫实现、知识图谱构建、模型微调、RAG实践等内容，持续更新中～
 
-1）修改 `application.yml` 的数据库配置为你自己的：
+## star 趋势图
 
-```yml
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/my_db
-    username: root
-    password: 123456
-```
+![Stargazers over time](https://starchart.cc/Azure12355/deep-forest.svg)
 
-2）执行 `sql/create_table.sql` 中的数据库语句，自动创建库表
+## 贡献
 
-3）启动项目，访问 `http://localhost:8101/api/doc.html` 即可打开接口文档，不需要写前端就能在线调试接口了~
+**贡献之前请先阅读[行为准则](CODE_OF_CONDUCT.md)和贡献指南。感谢所有为deep-forest做过贡献的人!**
 
-![](doc/swagger.png)
+#### 后端:
 
-### Redis 分布式登录
+<a href="https://github.com/Azure12355/deep-forest/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Azure12355/deep-forest" />
+</a>  
 
-1）修改 `application.yml` 的 Redis 配置为你自己的：
+#### 前端:
 
-```yml
-spring:
-  redis:
-    database: 1
-    host: localhost
-    port: 6379
-    timeout: 5000
-    password: 123456
-```
+<a href="https://github.com/Azure12355/deep-forest/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Azure12355/deep-forest" />
+</a>  
 
-2）修改 `application.yml` 中的 session 存储方式：
+## License
 
-```yml
-spring:
-  session:
-    store-type: redis
-```
-
-3）移除 `MainApplication` 类开头 `@SpringBootApplication` 注解内的 exclude 参数：
-
-修改前：
-
-```java
-@SpringBootApplication(exclude = {RedisAutoConfiguration.class})
-```
-
-修改后：
-
-
-```java
-@SpringBootApplication
-```
-
-### Elasticsearch 搜索引擎
-
-1）修改 `application.yml` 的 Elasticsearch 配置为你自己的：
-
-```yml
-spring:
-  elasticsearch:
-    uris: http://localhost:9200
-    username: root
-    password: 123456
-```
-
-2）复制 `sql/post_es_mapping.json` 文件中的内容，通过调用 Elasticsearch 的接口或者 Kibana Dev Tools 来创建索引（相当于数据库建表）
-
-```
-PUT post_v1
-{
- 参数见 sql/post_es_mapping.json 文件
-}
-```
-
-这步不会操作的话需要补充下 Elasticsearch 的知识，或者自行百度一下~
-
-3）开启同步任务，将数据库的帖子同步到 Elasticsearch
-
-找到 job 目录下的 `FullSyncPostToEs` 和 `IncSyncPostToEs` 文件，取消掉 `@Component` 注解的注释，再次执行程序即可触发同步：
-
-```java
-// todo 取消注释开启任务
-//@Component
-```
-
-### 业务代码生成器
-
-支持自动生成 Service、Controller、数据模型代码，配合 MyBatisX 插件，可以快速开发增删改查等实用基础功能。
-
-找到 `generate.CodeGenerator` 类，修改生成参数和生成路径，并且支持注释掉不需要的生成逻辑，然后运行即可。
-
-```
-// 指定生成参数
-String packageName = "com.weilanx.deepforest";
-String dataName = "用户评论";
-String dataKey = "userComment";
-String upperDataKey = "UserComment";
-```
-
-生成代码后，可以移动到实际项目中，并且按照 `// todo` 注释的提示来针对自己的业务需求进行修改。
+[Apache License 2.0](./LICENSE)
