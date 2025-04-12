@@ -43,6 +43,29 @@ spring:
     multipart:
       # 大小限制
       max-file-size: 10MB
+  # 大模型配置
+  ai:
+    openai:
+      base-url: "https://ark.cn-beijing.volces.com/api"
+      api-key: ${VOLCANO_API_KEY}
+      chat:
+        options:
+          model: "deepseek-v3-241226"
+
+#  ai:
+#    openai:
+#      base-url: "https://api.openai-hk.com" # gpt-4o
+#      api-key: ${OPENAI_API_KEY} # gpt-4o
+#      chat:
+#        options:
+#          model: "gpt-4o-mini"
+#  ai:
+#    openai:
+#      api-key: ${ALIYUN_API_KEY}
+#      base-url: "https://dashscope.aliyuncs.com/compatible-mode"
+#      chat:
+#        options:
+#          model: "deepseek-r1-distill-llama-70b"
 server:
   address: 0.0.0.0
   port: 8101
@@ -87,3 +110,13 @@ knife4j:
   enable: true
   setting:
     language: zh_cn
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+    com.weilanx.deepforest: debug
+ark:
+  ai:
+    api-key: ${VOLCANO_API_KEY}
+    base-url: "https://ark.cn-beijing.volces.com/api/v3/"
+    model: "bot-20250412092028-d2c5z"

@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.12</version>
+        <version>3.2.12</version>
         <relativePath/>
     </parent>
     <groupId>com.weilanx</groupId>
@@ -13,7 +13,38 @@
     <name>deep-forest</name>
     <properties>
         <java.version>17</java.version>
+        <spring-ai.version>1.0.0-M6</spring-ai.version>
+        <rxjava2.version>2.2.21</rxjava2.version>
+        <reactor-adapter.version>3.5.0</reactor-adapter.version> <!-- 确认版本兼容 -->
     </properties>
+
+    <!-- spring-ai相关依赖   -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 在这里管理版本 -->
+            <dependency>
+                <groupId>io.reactivex.rxjava2</groupId>
+                <artifactId>rxjava</artifactId>
+                <version>${rxjava2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.projectreactor.addons</groupId>
+                <artifactId>reactor-adapter</artifactId>
+                <version>${reactor-adapter.version}</version>
+            </dependency>
+            <!-- 管理其他相关依赖版本 -->
+        </dependencies>
+    </dependencyManagement>
+
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -126,7 +157,51 @@
             <version>4.0.3</version>
         </dependency>
         <!-- easyexcel 用于excel处理的工具  -->
+
+        <!--  spring-ai-openai-starter    -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--字节跳动火山引擎SDK        -->
+        <dependency>
+            <groupId>com.volcengine</groupId>
+            <artifactId>volcengine-java-sdk-ark-runtime</artifactId>
+            <version>0.2.2</version>
+        </dependency>
+
+        <!-- 引入 volcengine-ark-runtime -->
+        <dependency>
+            <groupId>com.volcengine</groupId> <!-- 确认 groupId -->
+            <artifactId>volcengine-java-sdk-ark-runtime</artifactId> <!-- 确认 artifactId -->
+            <version>0.2.2</version> <!-- 确认版本 -->
+            <!-- (可选但推荐) 排除它传递的 RxJava -->
+            <exclusions>
+                <exclusion>
+                    <groupId>io.reactivex.rxjava2</groupId>
+                    <artifactId>rxjava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.reactivex.rxjava3</groupId>
+                    <artifactId>rxjava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor.addons</groupId>
+            <artifactId>reactor-adapter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjava</artifactId>
+        </dependency>
     </dependencies>
+
+
+
     <build>
         <plugins>
             <plugin>
