@@ -7,13 +7,12 @@ import com.volcengine.ark.runtime.model.bot.completion.chat.BotChatCompletionChu
 import com.volcengine.ark.runtime.model.bot.completion.chat.BotChatCompletionRequest;
 // 导入 Ark 相关的类
 import com.volcengine.ark.runtime.model.completion.chat.ChatCompletionChoice;
-import com.volcengine.ark.runtime.model.completion.chat.ChatCompletionChunk;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
 import com.volcengine.ark.runtime.service.ArkService;
 import com.weilanx.deepforest.chat.config.ArkConfigurationProperties; // 导入配置类
 import com.weilanx.deepforest.chat.dto.*;
-import com.weilanx.deepforest.mock.MockDataStore;
+import com.weilanx.deepforest.chat.mock.MockDataStore;
 // RxJava 2 的导入 (如果需要显式声明，通常让类型推断处理)
 // import io.reactivex.Flowable;
 import jakarta.annotation.Resource;

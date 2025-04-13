@@ -1,5 +1,5 @@
 // src/main/java/com/weilanx/deepforest/mock/MockDataStore.java
-package com.weilanx.deepforest.mock;
+package com.weilanx.deepforest.chat.mock;
 
 import com.weilanx.deepforest.chat.dto.AttachmentDto; // 确保引入附件 DTO
 import com.weilanx.deepforest.chat.dto.ChatMessageDto;
