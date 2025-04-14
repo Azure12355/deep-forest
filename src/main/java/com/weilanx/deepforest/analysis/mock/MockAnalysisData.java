@@ -5,17 +5,16 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom; // 使用 ThreadLocalRandom 提高性能
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * 提供数据分析仪表盘的 Mock（模拟）数据 - **大幅扩展版**
+ * 提供数据分析仪表盘的 Mock（模拟）数据 - **大幅扩展版·**
  * 用于在数据库未接入或开发初期提供测试数据
  * 显著增加了数据量和时间跨度，模拟更复杂的场景。
  */
@@ -29,6 +28,7 @@ public class MockAnalysisData {
 
     /**
      * 生成完整的仪表盘模拟数据 (扩展版)
+     *
      * @return DashboardDataVO 包含大量模拟数据的对象
      */
     public static DashboardDataVO generateMockDashboardData() {
@@ -39,17 +39,10 @@ public class MockAnalysisData {
         double baseStorageGB = 450.5;   // 提升基础存储大小 GB
         int baseFileCount = 38500;     // 提升基础文件数
 
-        return new DashboardDataVO(
-                generateMockMetrics(baseSpeciesCount, baseRefCount, baseQaCount, baseStorageGB, baseFileCount),
-                generateMockSpeciesTaxonomy(baseSpeciesCount),
-                generateMockSpeciesStatus(baseSpeciesCount),
-                generateMockGrowthData("species", baseSpeciesCount, 36), // 模拟过去3年物种增长
-                generateMockGeoDistribution(baseSpeciesCount),
-                generateMockTopHosts(baseSpeciesCount, 10), // 获取 Top 10 寄主
+        return new DashboardDataVO(generateMockMetrics(baseSpeciesCount, baseRefCount, baseQaCount, baseStorageGB, baseFileCount), generateMockSpeciesTaxonomy(baseSpeciesCount), generateMockSpeciesStatus(baseSpeciesCount), generateMockGrowthData("species", baseSpeciesCount, 36), // 模拟过去3年物种增长
+                generateMockGeoDistribution(baseSpeciesCount), generateMockTopHosts(baseSpeciesCount, 10), // 获取 Top 10 寄主
                 generateMockGrowthData("reference", baseRefCount, 36), // 模拟过去3年文献增长
-                generateMockReferenceTypes(baseRefCount),
-                generateMockFileTypes(baseFileCount)
-        );
+                generateMockReferenceTypes(baseRefCount), generateMockFileTypes(baseFileCount));
     }
 
     // --- 各部分模拟数据生成方法 (扩展版) ---
@@ -63,13 +56,9 @@ public class MockAnalysisData {
         int refWeeklyIncrease = random.nextInt(300) + 200;  // 每周新增 200-500
         long qaLast7Days = qaCountToday * (random.nextInt(4) + 5); // 近7日是今日的 5-8 倍
 
-        return Arrays.asList(
-                new MetricDataVO("species", "leaf", "物种总数", speciesCount, null, "本周新增", speciesWeeklyIncrease, "gradient-green"),
-                new MetricDataVO("refs", "book-open", "参考文献总数", refCount, null, "本周新增", refWeeklyIncrease, "gradient-blue"),
-                new MetricDataVO("qa", "comments", "今日问答量", qaCountToday, null, "近7日", qaLast7Days, "gradient-purple"),
+        return Arrays.asList(new MetricDataVO("species", "leaf", "物种总数", speciesCount, null, "本周新增", speciesWeeklyIncrease, "gradient-green"), new MetricDataVO("refs", "book-open", "参考文献总数", refCount, null, "本周新增", refWeeklyIncrease, "gradient-blue"), new MetricDataVO("qa", "comments", "今日问答量", qaCountToday, null, "近7日", qaLast7Days, "gradient-purple"),
                 // 使用 BigDecimal 处理 GB 存储，保留一位小数
-                new MetricDataVO("storage", "database", "文件总大小", BigDecimal.valueOf(storageGB).setScale(1, RoundingMode.HALF_UP).doubleValue(), "GB", "文件数", fileCount, "gradient-orange")
-        );
+                new MetricDataVO("storage", "database", "文件总大小", BigDecimal.valueOf(storageGB).setScale(1, RoundingMode.HALF_UP).doubleValue(), "GB", "文件数", fileCount, "gradient-orange"));
     }
 
     /**
@@ -88,16 +77,9 @@ public class MockAnalysisData {
         // 确保 "其他" 不为负数
         others = Math.max(0, others);
 
-        return Arrays.asList(
-                new NameValueDataVO("昆虫纲 (Insecta)", insecta),
-                new NameValueDataVO("蛛形纲 (Arachnida)", arachnida),
-                new NameValueDataVO("线虫门 (Nematoda)", nematoda),
-                new NameValueDataVO("真菌界 (Fungi)", fungi),
-                new NameValueDataVO("细菌域 (Bacteria)", bacteria),
-                new NameValueDataVO("病毒界 (Virus)", virus), // 界可能不准确，但作为分类示意
+        return Arrays.asList(new NameValueDataVO("昆虫纲 (Insecta)", insecta), new NameValueDataVO("蛛形纲 (Arachnida)", arachnida), new NameValueDataVO("线虫门 (Nematoda)", nematoda), new NameValueDataVO("真菌界 (Fungi)", fungi), new NameValueDataVO("细菌域 (Bacteria)", bacteria), new NameValueDataVO("病毒界 (Virus)", virus), // 界可能不准确，但作为分类示意
                 new NameValueDataVO("软体动物门 (Mollusca)", random.nextInt(totalSpecies / 100) + 10), // 少量软体
-                new NameValueDataVO("其他", others)
-        );
+                new NameValueDataVO("其他", others));
     }
 
     /**
@@ -110,17 +92,14 @@ public class MockAnalysisData {
         int questionable = totalSpecies - confirmed - pending;
         questionable = Math.max(0, questionable);
 
-        return Arrays.asList(
-                new NameValueDataVO("已确认", confirmed),
-                new NameValueDataVO("待审核", pending),
-                new NameValueDataVO("有疑问", questionable)
-        );
+        return Arrays.asList(new NameValueDataVO("已确认", confirmed), new NameValueDataVO("待审核", pending), new NameValueDataVO("有疑问", questionable));
     }
 
     /**
      * 生成增长趋势数据 (通用方法，支持物种或文献，扩展时间跨度)
-     * @param type "species" 或 "reference"
-     * @param finalCount 最终数量
+     *
+     * @param type             "species" 或 "reference"
+     * @param finalCount       最终数量
      * @param monthsToSimulate 模拟多少个月的数据
      * @return TimeSeriesDataVO
      */
@@ -162,18 +141,12 @@ public class MockAnalysisData {
      */
     private static List<GeoDistributionDataVO> generateMockGeoDistribution(int totalSpecies) {
         // 基础比例，模拟非均匀分布
-        double[] baseRatios = {
-                0.05, 0.01, 0.07, 0.02, 0.13, 0.09, 0.04, 0.16, 0.11, 0.12, // 新疆-湖南
+        double[] baseRatios = {0.05, 0.01, 0.07, 0.02, 0.13, 0.09, 0.04, 0.16, 0.11, 0.12, // 新疆-湖南
                 0.06, 0.15, 0.08, 0.07, 0.11, 0.08, 0.10, 0.08, 0.09, 0.09, // 陕西-辽宁
                 0.05, 0.10, 0.12, 0.13, 0.14, 0.10, 0.03, 0.05, 0.04, 0.02, // 山西-北京
                 0.01, 0.02, 0.01, 0.01  // 天津-澳门
         };
-        String[] provinceNames = {
-                "新疆", "西藏", "内蒙古", "青海", "四川", "黑龙江", "甘肃", "云南", "广西", "湖南",
-                "陕西", "广东", "吉林", "河北", "湖北", "贵州", "山东", "江西", "河南", "辽宁",
-                "山西", "安徽", "福建", "浙江", "江苏", "重庆", "宁夏", "海南", "台湾", "北京",
-                "天津", "上海", "香港", "澳门"
-        };
+        String[] provinceNames = {"新疆", "西藏", "内蒙古", "青海", "四川", "黑龙江", "甘肃", "云南", "广西", "湖南", "陕西", "广东", "吉林", "河北", "湖北", "贵州", "山东", "江西", "河南", "辽宁", "山西", "安徽", "福建", "浙江", "江苏", "重庆", "宁夏", "海南", "台湾", "北京", "天津", "上海", "香港", "澳门"};
 
         List<GeoDistributionDataVO> distribution = new ArrayList<>();
         for (int i = 0; i < provinceNames.length; i++) {
@@ -187,14 +160,13 @@ public class MockAnalysisData {
 
     /**
      * 生成 Top N 寄主数据 (扩展版)
+     *
      * @param totalSpecies 总物种数，用于估算关联数量级
-     * @param topN 需要多少个 Top 寄主
+     * @param topN         需要多少个 Top 寄主
      * @return TopHostDataVO
      */
     private static TopHostDataVO generateMockTopHosts(int totalSpecies, int topN) {
-        List<String> names = Arrays.asList(
-                "松属 (Pinus)", "杨属 (Populus)", "栎属 (Quercus)", "柳属 (Salix)", "桦木属 (Betula)",
-                "榆属 (Ulmus)", "槭属 (Acer)", "苹果属 (Malus)", "李属 (Prunus)", "蔷薇属 (Rosa)", // 增加更多常见属
+        List<String> names = Arrays.asList("松属 (Pinus)", "杨属 (Populus)", "栎属 (Quercus)", "柳属 (Salix)", "桦木属 (Betula)", "榆属 (Ulmus)", "槭属 (Acer)", "苹果属 (Malus)", "李属 (Prunus)", "蔷薇属 (Rosa)", // 增加更多常见属
                 "云杉属 (Picea)", "冷杉属 (Abies)", "玉米 (Zea mays)", "小麦 (Triticum aestivum)", "水稻 (Oryza sativa)" // 增加农作物作为潜在寄主
         );
         // 确保我们有足够的名称
@@ -209,7 +181,7 @@ public class MockAnalysisData {
         double baseCount = totalSpecies * (0.1 + random.nextDouble() * 0.1); // Top 1 关联 10%-20% 的物种
         for (int i = 0; i < topN; i++) {
             topNames.add(names.get(i));
-            int count = (int) (baseCount * (1.0 - (double)i / topN) * (0.9 + random.nextDouble() * 0.2)); // 递减且有波动
+            int count = (int) (baseCount * (1.0 - (double) i / topN) * (0.9 + random.nextDouble() * 0.2)); // 递减且有波动
             count = Math.max(totalSpecies / 100, count); // 保证一个最小值
             topCounts.add(count);
         }
@@ -232,16 +204,7 @@ public class MockAnalysisData {
         int others = totalRefs - journal - conference - book - report - thesis - patent - website;
         others = Math.max(0, others);
 
-        return Arrays.asList(
-                new NameValueDataVO("期刊文章", journal),
-                new NameValueDataVO("会议论文", conference),
-                new NameValueDataVO("书籍/章节", book),
-                new NameValueDataVO("技术报告", report),
-                new NameValueDataVO("学位论文", thesis),
-                new NameValueDataVO("专利文献", patent),
-                new NameValueDataVO("网络资源", website),
-                new NameValueDataVO("其他", others)
-        );
+        return Arrays.asList(new NameValueDataVO("期刊文章", journal), new NameValueDataVO("会议论文", conference), new NameValueDataVO("书籍/章节", book), new NameValueDataVO("技术报告", report), new NameValueDataVO("学位论文", thesis), new NameValueDataVO("专利文献", patent), new NameValueDataVO("网络资源", website), new NameValueDataVO("其他", others));
     }
 
     /**
@@ -258,14 +221,7 @@ public class MockAnalysisData {
         int others = totalFiles - pdf - doc - image - excel - text - archive;
         others = Math.max(0, others);
 
-        return Arrays.asList(
-                new NameValueDataVO("PDF", pdf),
-                new NameValueDataVO("DOC/DOCX", doc),
-                new NameValueDataVO("图片文件", image), // 合并图片类型
-                new NameValueDataVO("表格数据(XLSX/CSV)", excel),
-                new NameValueDataVO("文本文件(TXT/XML)", text),
-                new NameValueDataVO("压缩包(ZIP/RAR)", archive),
-                new NameValueDataVO("其他", others)
-        );
+        return Arrays.asList(new NameValueDataVO("PDF", pdf), new NameValueDataVO("DOC/DOCX", doc), new NameValueDataVO("图片文件", image), // 合并图片类型
+                new NameValueDataVO("表格数据(XLSX/CSV)", excel), new NameValueDataVO("文本文件(TXT/XML)", text), new NameValueDataVO("压缩包(ZIP/RAR)", archive), new NameValueDataVO("其他", others));
     }
 }
