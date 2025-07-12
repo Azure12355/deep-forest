@@ -30,6 +30,10 @@
     </a>
 </div>
 
+# 关联项目🔗
+- DeepForest前端代码: https://github.com/Azure12355/deep-forest-next-js
+- DeepForest爬虫代码: https://github.com/Azure12355/deep-forest-spider
+
 ## 🌲 项目简介
 
 **DeepForest Backend** 是 "DeepForest - 智能林业病虫害问答与知识图谱系统" 的核心后端服务。它采用现代化的 Java 技术栈构建，旨在成为一个企业级的、可扩展的、高性能的 AI 应用后端。
@@ -47,7 +51,7 @@
 ### 关联项目
 
 *   🎨 **前端项目**: [deep-forest-next-js (React)](https://github.com/Azure12355/deep-forest-next-js)
-*   🌐 **项目演示地址**: [DeepForest 首页](https://azure12355.github.io/deep-forest-frontend/)
+*   🌐 **项目演示地址**: [DeepForest 首页](https://deepforest.weilanx.com)
 
 ## ✨ 功能模块 API
 
