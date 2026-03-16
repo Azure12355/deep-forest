@@ -5,7 +5,6 @@ import com.weilanx.deepforest.chat.dto.AttachmentDto; // 确保引入附件 DTO
 import com.weilanx.deepforest.chat.dto.ChatMessageDto;
 import com.weilanx.deepforest.chat.dto.HistoryGroupDto;
 import com.weilanx.deepforest.chat.dto.HistoryItemDto;
-import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import java.util.concurrent.TimeUnit;
  *
  * !! 更新：已使用更多与林业病虫害相关的模拟数据 !!
  */
-@Component
 public class MockDataStore {
 
     // 存储所有消息，Key 是 chatId
