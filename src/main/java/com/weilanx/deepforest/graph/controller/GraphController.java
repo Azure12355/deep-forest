@@ -1,11 +1,12 @@
 // src/main/java/com/weilanx/deepforest/graph/controller/GraphController.java
 package com.weilanx.deepforest.graph.controller;
 
+import com.weilanx.deepforest.common.BaseResponse;
+import com.weilanx.deepforest.common.ResultUtils;
 import com.weilanx.deepforest.graph.dto.GraphDataDto;
 import com.weilanx.deepforest.graph.mock.MockGraphDataStore;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,16 +30,16 @@ public class GraphController {
      * @return 包含节点、关系、分类和物种状态的完整图谱数据
      */
     @GetMapping("/data")
-    public ResponseEntity<GraphDataDto> getGraphData() {
+    public BaseResponse<GraphDataDto> getGraphData() {
         try {
             GraphDataDto graphData = mockGraphDataStore.getGraphData();
             log.info("成功获取知识图谱数据: {} 个节点, {} 条关系",
                     graphData.getNodes().size(),
                     graphData.getLinks().size());
-            return ResponseEntity.ok(graphData);
+            return ResultUtils.success(graphData);
         } catch (Exception e) {
-                log.error("获取知识图谱数据失败", e);
-                return ResponseEntity.internalServerError().build();
-            }
+            log.error("获取知识图谱数据失败", e);
+            return ResultUtils.error(50000, "获取知识图谱数据失败: " + e.getMessage());
+        }
     }
 }
