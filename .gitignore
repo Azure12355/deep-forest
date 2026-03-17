@@ -149,3 +149,5 @@ fabric.properties
 mvnw
 
 ~/
+.mvn/
+logs/
